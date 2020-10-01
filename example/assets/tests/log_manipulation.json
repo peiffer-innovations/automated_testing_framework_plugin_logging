@@ -1,0 +1,73 @@
+{
+  "active": true,
+  "name": "Log Manipulation",
+  "steps": [{
+      "id": "set_variable",
+      "values": {
+        "type": "String",
+        "variableName": "username",
+        "value": "myUsername"
+      }
+    },
+    {
+      "id": "set_variable",
+      "values": {
+        "type": "String",
+        "variableName": "password",
+        "value": "mysecretpassword"
+      }
+    },
+    {
+      "id": "log_variables",
+      "values": {
+        "logLevel": "info"
+      }
+    },
+    {
+      "id": "expect_failure",
+      "values": {
+        "step": {
+          "id": "log_scanner",
+          "values": {
+            "regEx": "mysecretpassword"
+          }
+        }
+      }
+    },
+    {
+      "id": "mask_logs",
+      "values": {
+        "regEx": "mysecretpassword",
+        "mask": "*"
+      }
+    },
+    {
+      "id": "log_scanner",
+      "values": {
+        "regEx": "mysecretpassword"
+      }
+    },
+    {
+      "id": "expect_failure",
+      "values": {
+        "step": {
+          "id": "log_scanner",
+          "values": {
+            "regEx": "myUsername"
+          }
+        }
+      }
+    },
+    {
+      "id": "clear_logs"
+    },
+    {
+      "id": "log_scanner",
+      "values": {
+        "regEx": "myUsername"
+      }
+    }
+  ],
+  "suiteName": "Logging",
+  "version": 1
+}

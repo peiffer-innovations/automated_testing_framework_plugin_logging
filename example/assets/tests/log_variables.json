@@ -1,0 +1,64 @@
+{
+  "active": true,
+  "name": "Log Variables",
+  "steps": [{
+      "id": "set_variable",
+      "values": {
+        "type": "String",
+        "variableName": "foo",
+        "value": "bar"
+      }
+    },
+    {
+      "id": "set_variable",
+      "values": {
+        "type": "String",
+        "variableName": "bar",
+        "value": "foo"
+      }
+    },
+    {
+      "id": "log_variables",
+      "values": {
+        "logLevel": "info"
+      }
+    },
+    {
+      "id": "log_variables",
+      "values": {
+        "logLevel": "finest",
+        "variableName": "foo"
+      }
+    },
+    {
+      "id": "expect_failure",
+      "values": {
+        "step": {
+          "id": "log_scanner",
+          "values": {
+            "regEx": "foo"
+          }
+        }
+      }
+    },
+    {
+      "id": "expect_failure",
+      "values": {
+        "step": {
+          "id": "log_scanner",
+          "values": {
+            "regEx": "bar"
+          }
+        }
+      }
+    },
+    {
+      "id": "log_scanner",
+      "values": {
+        "regEx": "foobar"
+      }
+    }
+  ],
+  "suiteName": "Logging",
+  "version": 1
+}
