@@ -42,6 +42,7 @@ class MaskLogsStep extends TestRunnerStep {
   /// one matches the given [regEx] value.
   @override
   Future<void> execute({
+    @required CancelToken cancelToken,
     @required TestReport report,
     @required TestController tester,
   }) async {

@@ -24,6 +24,7 @@ class ClearLogsStep extends TestRunnerStep {
   /// Executes the step.  This will clear all the logs from the test report.
   @override
   Future<void> execute({
+    @required CancelToken cancelToken,
     @required TestReport report,
     @required TestController tester,
   }) async {

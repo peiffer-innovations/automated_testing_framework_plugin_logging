@@ -48,6 +48,7 @@ class LogVariablesStep extends TestRunnerStep {
   /// this will
   @override
   Future<void> execute({
+    @required CancelToken cancelToken,
     @required TestReport report,
     @required TestController tester,
   }) async {
