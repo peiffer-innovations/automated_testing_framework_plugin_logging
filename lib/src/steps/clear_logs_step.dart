@@ -1,6 +1,4 @@
 import 'package:automated_testing_framework/automated_testing_framework.dart';
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 /// Clears all logs from the current [TestReport].
 class ClearLogsStep extends TestRunnerStep {
@@ -11,8 +9,8 @@ class ClearLogsStep extends TestRunnerStep {
   /// {
   /// }
   /// ```
-  static ClearLogsStep fromDynamic(dynamic map) {
-    ClearLogsStep result;
+  static ClearLogsStep? fromDynamic(dynamic map) {
+    ClearLogsStep? result;
 
     if (map != null) {
       result = ClearLogsStep();
@@ -24,16 +22,16 @@ class ClearLogsStep extends TestRunnerStep {
   /// Executes the step.  This will clear all the logs from the test report.
   @override
   Future<void> execute({
-    @required CancelToken cancelToken,
-    @required TestReport report,
-    @required TestController tester,
+    required CancelToken cancelToken,
+    required TestReport report,
+    required TestController tester,
   }) async {
     var name = 'clear_logs()';
     log(
       name,
       tester: tester,
     );
-    report?.logs?.clear();
+    report.logs.clear();
   }
 
   @override

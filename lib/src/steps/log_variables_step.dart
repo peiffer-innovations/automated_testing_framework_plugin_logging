@@ -1,7 +1,5 @@
 import 'package:automated_testing_framework/automated_testing_framework.dart';
-import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:meta/meta.dart';
 
 /// Emits out one or all the current variables to the logs.
 class LogVariablesStep extends TestRunnerStep {
@@ -15,11 +13,11 @@ class LogVariablesStep extends TestRunnerStep {
   /// The log level to use when writing the variables out.  As a note, the
   /// default level that the framework listens for is INFO, so you may need to
   /// change that level if you use more fine levels here.
-  final String logLevel;
+  final String? logLevel;
 
   /// The name of the variable to log out.  If set, only this specific variable
   /// will be logged.  Otherwise, all variables will be logged.
-  final String variableName;
+  final String? variableName;
 
   /// Creates an instance from a JSON-like map structure.  This expects the
   /// following format:
@@ -30,8 +28,8 @@ class LogVariablesStep extends TestRunnerStep {
   ///   "variableName": <String>
   /// }
   /// ```
-  static LogVariablesStep fromDynamic(dynamic map) {
-    LogVariablesStep result;
+  static LogVariablesStep? fromDynamic(dynamic map) {
+    LogVariablesStep? result;
 
     if (map != null) {
       result = LogVariablesStep(
@@ -48,9 +46,9 @@ class LogVariablesStep extends TestRunnerStep {
   /// this will
   @override
   Future<void> execute({
-    @required CancelToken cancelToken,
-    @required TestReport report,
-    @required TestController tester,
+    required CancelToken cancelToken,
+    required TestReport report,
+    required TestController tester,
   }) async {
     var logLevel = tester.resolveVariable(this.logLevel);
     var variableName = tester.resolveVariable(this.variableName);
@@ -104,7 +102,7 @@ class LogVariablesStep extends TestRunnerStep {
         'variable: [$variableName] = [$value]',
       );
     } else {
-      variables?.forEach((key, value) {
+      variables.forEach((key, value) {
         _logger.log(
           level,
           'variable: [$key] = [$value]',

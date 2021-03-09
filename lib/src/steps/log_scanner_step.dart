@@ -1,6 +1,4 @@
 import 'package:automated_testing_framework/automated_testing_framework.dart';
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 /// Scans the log records in the current test report and fails if a value is
 /// found with a given [regEx] value.
@@ -10,7 +8,7 @@ class LogScannerStep extends TestRunnerStep {
   });
 
   /// The Regular Expression to scan for.
-  final String regEx;
+  final String? regEx;
 
   /// Creates an instance from a JSON-like map structure.  This expects the
   /// following format:
@@ -20,8 +18,8 @@ class LogScannerStep extends TestRunnerStep {
   ///   "regEx": <String>
   /// }
   /// ```
-  static LogScannerStep fromDynamic(dynamic map) {
-    LogScannerStep result;
+  static LogScannerStep? fromDynamic(dynamic map) {
+    LogScannerStep? result;
 
     if (map != null) {
       result = LogScannerStep(
@@ -36,9 +34,9 @@ class LogScannerStep extends TestRunnerStep {
   /// one matches the given [regEx] value.
   @override
   Future<void> execute({
-    @required CancelToken cancelToken,
-    @required TestReport report,
-    @required TestController tester,
+    required CancelToken cancelToken,
+    required TestReport report,
+    required TestController tester,
   }) async {
     var regEx = tester.resolveVariable(this.regEx);
 

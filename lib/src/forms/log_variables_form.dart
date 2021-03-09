@@ -16,7 +16,7 @@ class LogVariablesForm extends TestStepForm {
   @override
   Widget buildForm(
     BuildContext context,
-    Map<String, dynamic> values, {
+    Map<String, dynamic>? values, {
     bool minify = false,
   }) {
     return Column(
@@ -46,7 +46,7 @@ class LogVariablesForm extends TestStepForm {
                 'shout',
               ],
               label: TestLoggingTranslations.atf_form_logging_log_level,
-              values: values,
+              values: values!,
             ),
             SizedBox(height: 16.0),
             buildEditText(

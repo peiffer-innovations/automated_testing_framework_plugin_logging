@@ -7,7 +7,7 @@ void main() {
     TestLoggingHelper.registerTestSteps();
     var availStep = TestStepRegistry.instance.getAvailableTestStep(
       'clear_logs',
-    );
+    )!;
 
     expect(availStep.form.runtimeType, ClearLogsForm);
     expect(
@@ -27,7 +27,7 @@ void main() {
     TestLoggingHelper.registerTestSteps();
     var availStep = TestStepRegistry.instance.getAvailableTestStep(
       'log_scanner',
-    );
+    )!;
 
     expect(availStep.form.runtimeType, LogScannerForm);
     expect(
@@ -47,7 +47,7 @@ void main() {
     TestLoggingHelper.registerTestSteps();
     var availStep = TestStepRegistry.instance.getAvailableTestStep(
       'log_variables',
-    );
+    )!;
 
     expect(availStep.form.runtimeType, LogVariablesForm);
     expect(
@@ -67,7 +67,7 @@ void main() {
     TestLoggingHelper.registerTestSteps();
     var availStep = TestStepRegistry.instance.getAvailableTestStep(
       'mask_logs',
-    );
+    )!;
 
     expect(availStep.form.runtimeType, MaskLogsForm);
     expect(

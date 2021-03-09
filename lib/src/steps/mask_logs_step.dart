@@ -1,6 +1,4 @@
 import 'package:automated_testing_framework/automated_testing_framework.dart';
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 /// Scans the log records in the current test report will mask all matches to
 /// the set [regEx] using [mask].
@@ -11,10 +9,10 @@ class MaskLogsStep extends TestRunnerStep {
   });
 
   /// The masking character to use.
-  final String mask;
+  final String? mask;
 
   /// The Regular Expression to scan for.
-  final String regEx;
+  final String? regEx;
 
   /// Creates an instance from a JSON-like map structure.  This expects the
   /// following format:
@@ -25,8 +23,8 @@ class MaskLogsStep extends TestRunnerStep {
   ///   "regEx": <String>
   /// }
   /// ```
-  static MaskLogsStep fromDynamic(dynamic map) {
-    MaskLogsStep result;
+  static MaskLogsStep? fromDynamic(dynamic map) {
+    MaskLogsStep? result;
 
     if (map != null) {
       result = MaskLogsStep(
@@ -42,11 +40,11 @@ class MaskLogsStep extends TestRunnerStep {
   /// one matches the given [regEx] value.
   @override
   Future<void> execute({
-    @required CancelToken cancelToken,
-    @required TestReport report,
-    @required TestController tester,
+    required CancelToken cancelToken,
+    required TestReport report,
+    required TestController tester,
   }) async {
-    String mask = tester.resolveVariable(this.mask);
+    String? mask = tester.resolveVariable(this.mask);
     String regEx = tester.resolveVariable(this.regEx);
 
     /// Do not emit out the regex as it may be sensitive, which is probably why
@@ -58,7 +56,7 @@ class MaskLogsStep extends TestRunnerStep {
     );
 
     if (mask?.isNotEmpty == true) {
-      mask = mask.substring(0, 1);
+      mask = mask!.substring(0, 1);
     } else {
       mask = '*';
     }
@@ -68,14 +66,14 @@ class MaskLogsStep extends TestRunnerStep {
     for (var line in report.logs) {
       if (re.hasMatch(line) == true) {
         var replacement = line;
-        re.allMatches(line)?.forEach((match) {
+        re.allMatches(line).forEach((match) {
           var end = match.end;
           var start = match.start;
 
           var length = end - start;
 
           replacement = replacement.substring(0, start) +
-              ''.padLeft(length, mask) +
+              ''.padLeft(length, mask!) +
               replacement.substring(end, replacement.length);
         });
         report.logs[index] = replacement;
