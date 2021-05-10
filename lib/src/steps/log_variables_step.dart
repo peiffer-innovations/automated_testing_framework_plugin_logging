@@ -8,7 +8,14 @@ class LogVariablesStep extends TestRunnerStep {
     this.variableName,
   });
 
+  static const id = 'log_variables';
+
   static final Logger _logger = Logger('LogVeriablesStep');
+
+  static List<String> get behaviorDrivenDescriptions => List.unmodifiable([
+        'log the `{{variableName}}` using the `{{logLevel}}` level.',
+        'log all variables using the `{{logLevel}}` level.',
+      ]);
 
   /// The log level to use when writing the variables out.  As a note, the
   /// default level that the framework listens for is INFO, so you may need to
@@ -18,6 +25,9 @@ class LogVariablesStep extends TestRunnerStep {
   /// The name of the variable to log out.  If set, only this specific variable
   /// will be logged.  Otherwise, all variables will be logged.
   final String? variableName;
+
+  @override
+  String get stepId => id;
 
   /// Creates an instance from a JSON-like map structure.  This expects the
   /// following format:
@@ -109,6 +119,18 @@ class LogVariablesStep extends TestRunnerStep {
         );
       });
     }
+  }
+
+  @override
+  String getBehaviorDrivenDescription(TestController tester) {
+    var result = variableName == null
+        ? behaviorDrivenDescriptions[1]
+        : behaviorDrivenDescriptions[0];
+
+    result = result.replaceAll('{{logLevel}}', logLevel ?? 'info');
+    result = result.replaceAll('{{variableName}}', variableName ?? 'null');
+
+    return result;
   }
 
   @override

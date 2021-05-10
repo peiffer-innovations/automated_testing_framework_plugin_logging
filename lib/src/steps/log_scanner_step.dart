@@ -4,11 +4,20 @@ import 'package:automated_testing_framework/automated_testing_framework.dart';
 /// found with a given [regEx] value.
 class LogScannerStep extends TestRunnerStep {
   LogScannerStep({
-    this.regEx,
+    required this.regEx,
   });
 
+  static const id = 'log_scanner';
+
+  static List<String> get behaviorDrivenDescriptions => List.unmodifiable([
+        'scan the logs for the `{{regEx}}` regular expression and fail if found.',
+      ]);
+
   /// The Regular Expression to scan for.
-  final String? regEx;
+  final String regEx;
+
+  @override
+  String get stepId => id;
 
   /// Creates an instance from a JSON-like map structure.  This expects the
   /// following format:
@@ -23,7 +32,7 @@ class LogScannerStep extends TestRunnerStep {
 
     if (map != null) {
       result = LogScannerStep(
-        regEx: map['regEx'],
+        regEx: map['regEx']!,
       );
     }
 
@@ -58,6 +67,15 @@ class LogScannerStep extends TestRunnerStep {
         );
       }
     }
+  }
+
+  @override
+  String getBehaviorDrivenDescription(TestController tester) {
+    var result = behaviorDrivenDescriptions[0];
+
+    result = result.replaceAll('{{regEx}}', regEx);
+
+    return result;
   }
 
   @override

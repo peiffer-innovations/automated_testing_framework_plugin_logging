@@ -5,14 +5,23 @@ import 'package:automated_testing_framework/automated_testing_framework.dart';
 class MaskLogsStep extends TestRunnerStep {
   MaskLogsStep({
     this.mask,
-    this.regEx,
+    required this.regEx,
   });
+
+  static const id = 'mask_logs';
+
+  static List<String> get behaviorDrivenDescriptions => List.unmodifiable([
+        'mask all instances of the `{{regEx}}` regular expession using `{{mask}}` as the masking character.',
+      ]);
 
   /// The masking character to use.
   final String? mask;
 
   /// The Regular Expression to scan for.
-  final String? regEx;
+  final String regEx;
+
+  @override
+  String get stepId => id;
 
   /// Creates an instance from a JSON-like map structure.  This expects the
   /// following format:
@@ -29,7 +38,7 @@ class MaskLogsStep extends TestRunnerStep {
     if (map != null) {
       result = MaskLogsStep(
         mask: map['mask'],
-        regEx: map['regEx'],
+        regEx: map['regEx']!,
       );
     }
 
@@ -80,6 +89,19 @@ class MaskLogsStep extends TestRunnerStep {
       }
       index++;
     }
+  }
+
+  @override
+  String getBehaviorDrivenDescription(TestController tester) {
+    var result = behaviorDrivenDescriptions[0];
+
+    result = result.replaceAll('{{regEx}}', regEx);
+    result = result.replaceAll(
+      '{{mask}}',
+      mask?.isNotEmpty == true ? mask!.substring(0, 1) : '*',
+    );
+
+    return result;
   }
 
   @override

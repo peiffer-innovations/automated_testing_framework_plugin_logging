@@ -2,6 +2,15 @@ import 'package:automated_testing_framework/automated_testing_framework.dart';
 
 /// Clears all logs from the current [TestReport].
 class ClearLogsStep extends TestRunnerStep {
+  static const id = 'clear_logs';
+
+  static List<String> get behaviorDrivenDescriptions => List.unmodifiable([
+        'clear the test logs.',
+      ]);
+
+  @override
+  String get stepId => id;
+
   /// Creates an instance from a JSON-like map structure.  This expects the
   /// following format:
   ///
@@ -26,12 +35,19 @@ class ClearLogsStep extends TestRunnerStep {
     required TestReport report,
     required TestController tester,
   }) async {
-    var name = 'clear_logs()';
+    var name = '$id()';
     log(
       name,
       tester: tester,
     );
     report.logs.clear();
+  }
+
+  @override
+  String getBehaviorDrivenDescription(TestController tester) {
+    var result = behaviorDrivenDescriptions[0];
+
+    return result;
   }
 
   @override
