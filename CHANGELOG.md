@@ -1,3 +1,8 @@
+## [3.0.1+1] - May 30th, 2021
+
+* Updated dependencies and podspecs
+
+
 ## [3.0.1] - May 9th, 2021
 
 * Added BDD values to the steps.
