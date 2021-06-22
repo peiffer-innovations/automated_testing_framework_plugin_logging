@@ -1,3 +1,8 @@
+## [3.0.1+2] - June 22nd, 2021
+
+* Updated with the latest framework.
+
+
 ## [3.0.1+1] - May 30th, 2021
 
 * Updated dependencies and podspecs
