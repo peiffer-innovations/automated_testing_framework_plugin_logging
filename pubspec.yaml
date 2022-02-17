@@ -2,13 +2,13 @@ name: automated_testing_framework_plugin_logging
 description: Library to use provide logging capabilities and evaluations to the testing framework.
 homepage: https://github.com/peiffer-innovations/automated_testing_framework_plugin_logging
 
-version: 3.0.2+1
+version: 3.0.2+2
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
-  automated_testing_framework: ^3.2.3
+  automated_testing_framework: ^3.3.0
   flutter:
     sdk: flutter
   form_validation: ^2.1.0+2
