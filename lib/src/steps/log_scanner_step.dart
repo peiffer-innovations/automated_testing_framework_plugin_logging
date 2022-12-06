@@ -47,19 +47,19 @@ class LogScannerStep extends TestRunnerStep {
     required TestReport report,
     required TestController tester,
   }) async {
-    var regEx = tester.resolveVariable(this.regEx);
+    final regEx = tester.resolveVariable(this.regEx);
 
     // So... this is a bit unique.  Do NOT emit the regex out in the log for
     // this because in a sense of irony, if the regex is a plain string,
     // emitting it here will actuall cause the step to fail.  So this log entry
     // can become a self failing problem.
-    var name = 'log_scanner(...)';
+    final name = 'log_scanner(...)';
     log(
       name,
       tester: tester,
     );
 
-    var re = RegExp(regEx);
+    final re = RegExp(regEx);
     for (var line in report.logs) {
       if (re.hasMatch(line) == true) {
         throw Exception(

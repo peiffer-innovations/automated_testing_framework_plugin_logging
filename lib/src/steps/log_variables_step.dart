@@ -60,16 +60,16 @@ class LogVariablesStep extends TestRunnerStep {
     required TestReport report,
     required TestController tester,
   }) async {
-    var logLevel = tester.resolveVariable(this.logLevel);
-    var variableName = tester.resolveVariable(this.variableName);
+    final logLevel = tester.resolveVariable(this.logLevel);
+    final variableName = tester.resolveVariable(this.variableName);
 
-    var name = "log_variables('$logLevel', '$variableName')";
+    final name = "log_variables('$logLevel', '$variableName')";
     log(
       name,
       tester: tester,
     );
 
-    var variables = tester.variables;
+    final variables = tester.variables;
     Level level;
 
     switch (logLevel?.toLowerCase()) {
@@ -106,7 +106,7 @@ class LogVariablesStep extends TestRunnerStep {
     }
 
     if (variableName?.isNotEmpty == true) {
-      var value = tester.getVariable(variableName);
+      final value = tester.getVariable(variableName);
       _logger.log(
         level,
         'variable: [$variableName] = [$value]',

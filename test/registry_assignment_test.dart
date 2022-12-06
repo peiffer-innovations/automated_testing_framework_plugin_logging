@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('clear_logs', () {
     TestLoggingHelper.registerTestSteps();
-    var availStep = TestStepRegistry.instance.getAvailableTestStep(
+    final availStep = TestStepRegistry.instance.getAvailableTestStep(
       'clear_logs',
     )!;
 
@@ -25,7 +25,7 @@ void main() {
 
   test('log_scanner', () {
     TestLoggingHelper.registerTestSteps();
-    var availStep = TestStepRegistry.instance.getAvailableTestStep(
+    final availStep = TestStepRegistry.instance.getAvailableTestStep(
       'log_scanner',
     )!;
 
@@ -45,7 +45,7 @@ void main() {
 
   test('log_variables', () {
     TestLoggingHelper.registerTestSteps();
-    var availStep = TestStepRegistry.instance.getAvailableTestStep(
+    final availStep = TestStepRegistry.instance.getAvailableTestStep(
       'log_variables',
     )!;
 
@@ -65,7 +65,7 @@ void main() {
 
   test('mask_logs', () {
     TestLoggingHelper.registerTestSteps();
-    var availStep = TestStepRegistry.instance.getAvailableTestStep(
+    final availStep = TestStepRegistry.instance.getAvailableTestStep(
       'mask_logs',
     )!;
 

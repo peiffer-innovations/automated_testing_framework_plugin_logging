@@ -35,7 +35,7 @@ class ClearLogsStep extends TestRunnerStep {
     required TestReport report,
     required TestController tester,
   }) async {
-    var name = '$id()';
+    final name = '$id()';
     log(
       name,
       tester: tester,
@@ -45,7 +45,7 @@ class ClearLogsStep extends TestRunnerStep {
 
   @override
   String getBehaviorDrivenDescription(TestController tester) {
-    var result = behaviorDrivenDescriptions[0];
+    final result = behaviorDrivenDescriptions[0];
 
     return result;
   }

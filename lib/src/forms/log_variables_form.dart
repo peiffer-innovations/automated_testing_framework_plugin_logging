@@ -48,7 +48,7 @@ class LogVariablesForm extends TestStepForm {
               label: TestLoggingTranslations.atf_form_logging_log_level,
               values: values!,
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             buildEditText(
               context: context,
               id: 'variableName',

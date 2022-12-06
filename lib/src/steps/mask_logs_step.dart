@@ -54,11 +54,11 @@ class MaskLogsStep extends TestRunnerStep {
     required TestController tester,
   }) async {
     String? mask = tester.resolveVariable(this.mask);
-    String regEx = tester.resolveVariable(this.regEx);
+    final regEx = tester.resolveVariable(this.regEx);
 
     /// Do not emit out the regex as it may be sensitive, which is probably why
     /// it's being masked in the first place.
-    var name = "mask_logs('$mask')";
+    final name = "mask_logs('$mask')";
     log(
       name,
       tester: tester,
@@ -70,16 +70,16 @@ class MaskLogsStep extends TestRunnerStep {
       mask = '*';
     }
 
-    var re = RegExp(regEx);
+    final re = RegExp(regEx);
     var index = 0;
     for (var line in report.logs) {
       if (re.hasMatch(line) == true) {
         var replacement = line;
         re.allMatches(line).forEach((match) {
-          var end = match.end;
-          var start = match.start;
+          final end = match.end;
+          final start = match.start;
 
-          var length = end - start;
+          final length = end - start;
 
           replacement = replacement.substring(0, start) +
               ''.padLeft(length, mask!) +

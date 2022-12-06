@@ -7,12 +7,12 @@ class TestLoggingHelper {
   static void registerTestSteps([TestStepRegistry? registry]) {
     (registry ?? TestStepRegistry.instance).registerCustomSteps([
       TestStepBuilder(
-        availableTestStep: AvailableTestStep(
+        availableTestStep: const AvailableTestStep(
           form: ClearLogsForm(),
           help: TestLoggingTranslations.atf_logging_help_clear_logs,
           id: 'clear_logs',
-          keys: const {},
-          quickAddValues: const {},
+          keys: {},
+          quickAddValues: {},
           title: TestLoggingTranslations.atf_logging_title_clear_logs,
           widgetless: true,
           type: null,
@@ -20,11 +20,11 @@ class TestLoggingHelper {
         testRunnerStepBuilder: ClearLogsStep.fromDynamic,
       ),
       TestStepBuilder(
-        availableTestStep: AvailableTestStep(
+        availableTestStep: const AvailableTestStep(
           form: LogScannerForm(),
           help: TestLoggingTranslations.atf_logging_help_log_scanner,
           id: 'log_scanner',
-          keys: const {
+          keys: {
             'regEx',
           },
           quickAddValues: null,
@@ -35,11 +35,11 @@ class TestLoggingHelper {
         testRunnerStepBuilder: LogScannerStep.fromDynamic,
       ),
       TestStepBuilder(
-        availableTestStep: AvailableTestStep(
+        availableTestStep: const AvailableTestStep(
           form: LogVariablesForm(),
           help: TestLoggingTranslations.atf_logging_help_log_variables,
           id: 'log_variables',
-          keys: const {
+          keys: {
             'logLevel',
             'variableName',
           },
@@ -51,11 +51,11 @@ class TestLoggingHelper {
         testRunnerStepBuilder: LogVariablesStep.fromDynamic,
       ),
       TestStepBuilder(
-        availableTestStep: AvailableTestStep(
+        availableTestStep: const AvailableTestStep(
           form: MaskLogsForm(),
           help: TestLoggingTranslations.atf_logging_help_mask_logs,
           id: 'mask_logs',
-          keys: const {
+          keys: {
             'regEx',
           },
           quickAddValues: null,
